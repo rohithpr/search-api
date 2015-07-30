@@ -21,10 +21,10 @@ def root():
         },
         'end_points': {
             'search': '/search',
+            'news': '/news',
         }
     }
     return jsonify(project_information)
-
 
 def argument_validator(request):
     errors = {}
@@ -70,6 +70,16 @@ def search():
         return jsonify(errors)
     else:
         result = engine.search(**arguments)
+        return jsonify(result)
+
+@app.route('/news/')
+def news():
+    errors, arguments, engine = argument_validator(request)
+    print(errors, arguments, engine)
+    if len(errors.keys()) > 0:
+        return jsonify(errors)
+    else:
+        result = engine.search_news(**arguments)
         return jsonify(result)
 
 if __name__ == '__main__':
