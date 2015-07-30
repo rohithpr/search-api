@@ -23,7 +23,7 @@ An API for fetching results in JSON format from search engines.
 
 ### Examples
 
-`http://search-api.herokuapp.com/search?q=hello&num=1&engine=bing`
+`http://search-api.herokuapp.com/search?q=hello&num=1&engine=bing`  
 `http://search-api.herokuapp.com/news?q=hello&recent=h&start=100`
 
 ### Data returned
@@ -33,4 +33,4 @@ See [py-web-search](https://github.com/rohithpr/py-web-search#usage) for details
 Additional fields:
 1. result['error']: True if there has been any error, False if success
 
-## NOTE: There is a random delay of 3-10 seconds, when there is no error, to prevent making too many requests which may result in the service being blocked.
+#### NOTE: There is a random delay of 3-10 seconds, when there is no error, to prevent making too many requests which may result in the service being blocked.
