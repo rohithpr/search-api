@@ -2,6 +2,7 @@ from flask import Flask, jsonify, request, redirect, url_for
 from pws import Bing, Google
 
 import random
+import time
 
 app = Flask(__name__)
 
@@ -62,6 +63,9 @@ def argument_validator(request):
     arguments = {'query': query, 'num': num, 'start': start, 'sleep': False, 'recent': recent}
     return errors, arguments, engine
 
+def sleeper():
+    time.sleep(random.randrange(3,11))
+
 @app.route('/search/')
 def search():
     errors, arguments, engine = argument_validator(request)
@@ -69,7 +73,9 @@ def search():
     if len(errors.keys()) > 0:
         return jsonify(errors)
     else:
+        sleeper()
         result = engine.search(**arguments)
+        errors['errors'] = False
         return jsonify(result)
 
 @app.route('/news/')
@@ -80,6 +86,7 @@ def news():
         errors['errors'] = True
         return jsonify(errors)
     else:
+        sleeper()
         result = engine.search_news(**arguments)
         errors['errors'] = False
         return jsonify(result)
