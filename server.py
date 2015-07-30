@@ -77,10 +77,19 @@ def news():
     errors, arguments, engine = argument_validator(request)
     print(errors, arguments, engine)
     if len(errors.keys()) > 0:
+        errors['errors'] = True
         return jsonify(errors)
     else:
         result = engine.search_news(**arguments)
+        errors['errors'] = False
         return jsonify(result)
+
+@app.errorhandler(404)
+def page_not_found(e):
+    errors = {}
+    errors['errors'] = True
+    errors['type'] = 'Incorrect URL'
+    return jsonify(errors)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', threaded=True, debug=True)
