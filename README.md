@@ -30,7 +30,7 @@ An API for fetching results in JSON format from search engines.
 
 See [py-web-search](https://github.com/rohithpr/py-web-search#usage) for details on the data returned
 
-Additional fields:
-1. result['error']: True if there has been any error, False if success
+Additional fields:  
+`result['error']`: True if there has been any error, False if success
 
 #### NOTE: There is a random delay of 3-10 seconds, when there is no error, to prevent making too many requests which may result in the service being blocked.
