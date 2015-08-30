@@ -24,7 +24,6 @@ def root():
             'search': '/search',
             'news': '/news',
         },
-        'ip': request.remote_addr
     }
     return jsonify(project_information)
 
